@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "16.4.3",
@@ -13,13 +14,22 @@
     "react-dom": "19.3.0"
   },
   "devDependencies": {
+    "@requem-team/prettier": "^1.0.5",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.9.10",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
-  "packageManager": "yarn@1.22.22"
+  "packageManager": "yarn@1.22.22",
+  "lint-staged": {
+    "*.{*ts,*js,tsx,jsx,md,mdx,css}": [
+      "prettier --write"
+    ]
+  }
 }
