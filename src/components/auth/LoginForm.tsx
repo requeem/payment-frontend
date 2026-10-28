@@ -3,6 +3,7 @@
 import { Field, FieldDescription, FieldError, FieldLabel } from '@/src/components/ui/field'
 import { Input } from '@/src/components/ui/input'
 import { Controller, useForm } from 'react-hook-form'
+import { motion, useReducedMotion } from 'motion/react'
 import { AuthWrapper } from './AuthWrapper'
 import z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -19,6 +20,7 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>
 
 export function LoginForm() {
+   const reduceMotion = useReducedMotion()
    const { mutate, isPending } = useLoginUserMutation()
    const router = useRouter()
 
@@ -47,13 +49,13 @@ export function LoginForm() {
    return (
       <AuthWrapper
          title='Войти'
-         description='Введите свои данные для входа в аккаунт'
+         description='Введите свои данные, чтобы продолжить работу с Nebula'
          bottomText='Еще нет аккаунта?'
          bottomTextLink='Регистрация'
          bottomLinkHref='/auth/register'
       >
-         <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-3'>
-            <Controller
+         <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-5'>
+            <motion.div initial={reduceMotion ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduceMotion ? 0 : 0.4 }}><Controller
                name='email'
                control={form.control}
                render={({ field, fieldState }) => (
@@ -64,14 +66,14 @@ export function LoginForm() {
                         id={field.name}
                         aria-invalid={fieldState.invalid}
                         placeholder='Введите свою почту'
-                        autoComplete='off'
+                        autoComplete='email'
                      />
                      <FieldDescription></FieldDescription>
                      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                   </Field>
                )}
-            />
-            <Controller
+            /></motion.div>
+            <motion.div initial={reduceMotion ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduceMotion ? 0 : 0.4 }}><Controller
                name='password'
                control={form.control}
                render={({ field, fieldState }) => (
@@ -82,17 +84,16 @@ export function LoginForm() {
                         id={field.name}
                         aria-invalid={fieldState.invalid}
                         placeholder='Введите пароль'
-                        autoComplete='off'
+                        autoComplete='current-password'
                      />
                      <FieldDescription></FieldDescription>
                      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                   </Field>
                )}
-            />
-
-            <Button size='lg' type='submit' isLoading={isPending} disabled={isPending}>
+            /></motion.div>
+            <motion.div whileHover={reduceMotion ? undefined : { y: -2 }} whileTap={reduceMotion ? undefined : { scale: 0.99 }}><Button size='lg' type='submit' isLoading={isPending} disabled={isPending}>
                Продолжить
-            </Button>
+            </Button></motion.div>
          </form>
       </AuthWrapper>
    )
