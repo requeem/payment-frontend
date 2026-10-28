@@ -56,70 +56,93 @@ export function RegisterForm() {
          bottomLinkHref='/auth/login'
       >
          <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-5'>
-            <motion.div initial={reduceMotion ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduceMotion ? 0 : 0.4 }}><Controller
-               name='name'
-               control={form.control}
-               render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                     <FieldLabel htmlFor={field.name}>Имя</FieldLabel>
-                     <Input
-                        {...field}
-                        id={field.name}
-                        aria-invalid={fieldState.invalid}
-                        placeholder='Введите ваше имя'
-                        autoComplete='name'
-                     />
-
-                     {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                  </Field>
-               )}
-            /></motion.div>
-            <motion.div initial={reduceMotion ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduceMotion ? 0 : 0.4 }}><Controller
-               name='email'
-               control={form.control}
-               render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                     <FieldLabel htmlFor={field.name}>Почта</FieldLabel>
-                     <Input
-                        {...field}
-                        id={field.name}
-                        aria-invalid={fieldState.invalid}
-                        placeholder='Введите свою почту'
-                        autoComplete='email'
-                     />
-
-                     {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                  </Field>
-               )}
-            /></motion.div>
-            <motion.div initial={reduceMotion ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduceMotion ? 0 : 0.4 }}><Controller
-               name='password'
-               control={form.control}
-               render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                     <FieldLabel htmlFor={field.name}>Пароль</FieldLabel>
-                     <Input
-                        {...field}
-                        id={field.name}
-                        aria-invalid={fieldState.invalid}
-                        type='password'
-                        placeholder='Введите пароль'
-                        autoComplete='new-password'
-                     />
-
-                     {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                  </Field>
-               )}
-            /></motion.div>
-            <motion.div whileHover={reduceMotion ? undefined : { y: -2 }} whileTap={reduceMotion ? undefined : { scale: 0.99 }}><Button
-               disabled={isPending}
-               isLoading={isPending}
-               type='submit'
-               size='lg'
-               className='w-full mt-5'
+            <motion.div
+               initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: reduceMotion ? 0 : 0.4 }}
             >
-               Продолжить
-            </Button></motion.div>
+               <Controller
+                  name='name'
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                     <Field data-invalid={fieldState.invalid}>
+                        <FieldLabel htmlFor={field.name}>Имя</FieldLabel>
+                        <Input
+                           {...field}
+                           id={field.name}
+                           aria-invalid={fieldState.invalid}
+                           placeholder='Введите ваше имя'
+                           autoComplete='name'
+                        />
+
+                        {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                     </Field>
+                  )}
+               />
+            </motion.div>
+            <motion.div
+               initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: reduceMotion ? 0 : 0.4 }}
+            >
+               <Controller
+                  name='email'
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                     <Field data-invalid={fieldState.invalid}>
+                        <FieldLabel htmlFor={field.name}>Почта</FieldLabel>
+                        <Input
+                           {...field}
+                           id={field.name}
+                           aria-invalid={fieldState.invalid}
+                           placeholder='Введите свою почту'
+                           autoComplete='email'
+                        />
+
+                        {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                     </Field>
+                  )}
+               />
+            </motion.div>
+            <motion.div
+               initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: reduceMotion ? 0 : 0.4 }}
+            >
+               <Controller
+                  name='password'
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                     <Field data-invalid={fieldState.invalid}>
+                        <FieldLabel htmlFor={field.name}>Пароль</FieldLabel>
+                        <Input
+                           {...field}
+                           id={field.name}
+                           aria-invalid={fieldState.invalid}
+                           type='password'
+                           placeholder='Введите пароль'
+                           autoComplete='new-password'
+                        />
+
+                        {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                     </Field>
+                  )}
+               />
+            </motion.div>
+            <motion.div
+               whileHover={reduceMotion ? undefined : { y: -2 }}
+               whileTap={reduceMotion ? undefined : { scale: 0.99 }}
+            >
+               <Button
+                  disabled={isPending}
+                  isLoading={isPending}
+                  type='submit'
+                  size='lg'
+                  className='w-full mt-5'
+               >
+                  Продолжить
+               </Button>
+            </motion.div>
          </form>
       </AuthWrapper>
    )
