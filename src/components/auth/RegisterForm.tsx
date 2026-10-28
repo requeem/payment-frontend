@@ -102,6 +102,7 @@ export function RegisterForm() {
                         {...field}
                         id={field.name}
                         aria-invalid={fieldState.invalid}
+                        type='password'
                         placeholder='Введите пароль'
                         autoComplete='new-password'
                      />
