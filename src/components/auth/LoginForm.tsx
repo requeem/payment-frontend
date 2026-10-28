@@ -83,6 +83,7 @@ export function LoginForm() {
                         {...field}
                         id={field.name}
                         aria-invalid={fieldState.invalid}
+                        type='password'
                         placeholder='Введите пароль'
                         autoComplete='current-password'
                      />
