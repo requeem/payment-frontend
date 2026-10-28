@@ -1,15 +1,14 @@
 'use client'
 
-import { useRegisterUserMutation } from '@/api/hooks/useRegisterUserMutation'
-import { Field, FieldError, FieldLabel } from '@/components/ui/field'
-import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ResponseError } from '@siberiacancode/fetches'
 import { Controller, useForm } from 'react-hook-form'
 import z from 'zod'
 import { Button } from '../ui/button'
 import { toast } from '../ui/toast'
 import { AuthWrapper } from './AuthWrapper'
+import { useRegisterUserMutation } from '@/src/api/hooks/useRegisterUserMutation'
+import { Field, FieldError, FieldLabel } from '../ui/field'
+import { Input } from '@/src/components/ui/input'
 
 const registerSchema = z.object({
    name: z.string().min(1, { message: 'Имя обязательно' }),
@@ -33,16 +32,17 @@ export function RegisterForm() {
       }
    })
 
-   const { mutateAsync, isPending } = useRegisterUserMutation({})
+   const { mutateAsync, isPending } = useRegisterUserMutation()
 
    const onSubmit = async (data: RegisterFormValues) => {
-      try {
-         await mutateAsync({ params: data })
-      } catch (error) {
-         if (error instanceof ResponseError) {
-            toast.add({ description: error.response.data.message, type: 'error' })
+      await mutateAsync(
+         { params: data },
+         {
+            onError: (err) => {
+               toast.add({ description: err?.response?.data?.message, type: 'error' })
+            }
          }
-      }
+      )
    }
 
    return (
@@ -108,7 +108,13 @@ export function RegisterForm() {
                   </Field>
                )}
             />
-            <Button disabled={isPending} type='submit' size='lg' className='w-full mt-5'>
+            <Button
+               disabled={isPending}
+               isLoading={isPending}
+               type='submit'
+               size='lg'
+               className='w-full mt-5'
+            >
                Продолжить
             </Button>
          </form>

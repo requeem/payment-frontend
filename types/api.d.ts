@@ -1,54 +1,62 @@
-interface MutationSettings<Params = void, Func = unknown> {
+type ApiRequestFunction = (...args: never[]) => unknown
+
+interface MutationSettings<Params = void, Func extends ApiRequestFunction = ApiRequestFunction> {
    config?: ApiRequestConfig
    options?: import('@tanstack/react-query').UseMutationOptions<
       Awaited<ReturnType<Func>>,
-      any,
+      import('axios').AxiosError<{ message: string }>,
       Params,
-      any
+      unknown
    >
 }
 
-interface QuerySettings<Func = unknown> {
+interface QuerySettings<Func extends ApiRequestFunction = ApiRequestFunction> {
    config?: ApiRequestConfig
    options?: Omit<
       import('@tanstack/react-query').UseQueryOptions<
          Awaited<ReturnType<Func>>,
-         any,
+         import('axios').AxiosError<unknown>,
          Awaited<ReturnType<Func>>,
-         any
+         import('@tanstack/react-query').QueryKey
       >,
       'queryKey'
    >
 }
 
-interface SuspenceQuerySettings<Func = unknown> {
+interface SuspenseQuerySettings<Func extends ApiRequestFunction = ApiRequestFunction> {
    config?: ApiRequestConfig
    options?: Omit<
       import('@tanstack/react-query').UseSuspenseQueryOptions<
          Awaited<ReturnType<Func>>,
-         any,
+         import('axios').AxiosError<unknown>,
          Awaited<ReturnType<Func>>,
-         any
+         import('@tanstack/react-query').QueryKey
       >,
       'queryKey'
    >
 }
 
-interface InfiniteQuerySettings<Func = unknown> {
+type SuspenceQuerySettings<Func extends ApiRequestFunction = ApiRequestFunction> =
+   SuspenseQuerySettings<Func>
+
+interface InfiniteQuerySettings<
+   Func extends ApiRequestFunction = ApiRequestFunction,
+   PageParam = unknown
+> {
    config?: ApiRequestConfig
    options?: Omit<
       import('@tanstack/react-query').UseInfiniteQueryOptions<
          Awaited<ReturnType<Func>>,
-         any,
-         Awaited<ReturnType<Func>>,
-         any,
-         any
+         import('axios').AxiosError<unknown>,
+         import('@tanstack/react-query').InfiniteData<Awaited<ReturnType<Func>>, PageParam>,
+         import('@tanstack/react-query').QueryKey,
+         PageParam
       >,
       'queryKey'
    >
 }
 
-type ApiRequestConfig = import('@siberiacancode/fetches').FetchesRequestOptions
+type ApiRequestConfig = import('axios').AxiosRequestConfig
 
 type RequestConfig<Params = undefined> = Params extends undefined
    ? { config?: ApiRequestConfig }

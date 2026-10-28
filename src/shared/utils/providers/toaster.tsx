@@ -1,5 +1,5 @@
-import { Toaster } from '@/components/ui/toast'
 import { ReactNode } from 'react'
+import { Toaster } from '@/src/components/ui/toast'
 
 interface ToasterProvider {
    children: ReactNode

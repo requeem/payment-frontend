@@ -1,17 +1,48 @@
 'use client'
 
-import { Field, FieldDescription, FieldError, FieldLabel } from '@/components/ui/field'
-import { Input } from '@/components/ui/input'
+import { Field, FieldDescription, FieldError, FieldLabel } from '@/src/components/ui/field'
+import { Input } from '@/src/components/ui/input'
 import { Controller, useForm } from 'react-hook-form'
 import { AuthWrapper } from './AuthWrapper'
+import z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useLoginUserMutation } from '@/src/api/hooks/useLoginUserMutation'
+import { Button } from '@/src/components/ui/button'
+import { toast } from '@/src/components/ui/toast'
+import { useRouter } from 'next/navigation'
+
+const loginSchema = z.object({
+   email: z.email({ message: 'Введите корректный адрес электронной почты' }),
+   password: z.string().min(6, { message: 'Пароль должен содержать хотя бы 6 символов' })
+})
+
+type LoginFormValues = z.infer<typeof loginSchema>
 
 export function LoginForm() {
-   const form = useForm({
+   const { mutate, isPending } = useLoginUserMutation()
+   const router = useRouter()
+
+   const form = useForm<LoginFormValues>({
+      resolver: zodResolver(loginSchema),
       defaultValues: {
          email: '',
          password: ''
       }
    })
+
+   const onSubmit = (data: LoginFormValues) => {
+      mutate(
+         { params: data },
+         {
+            onSuccess: () => {
+               router.push('/')
+            },
+            onError: (err) => {
+               toast.add({ description: err?.response?.data?.message, type: 'error' })
+            }
+         }
+      )
+   }
 
    return (
       <AuthWrapper
@@ -21,7 +52,7 @@ export function LoginForm() {
          bottomTextLink='Регистрация'
          bottomLinkHref='/auth/register'
       >
-         <div className='flex flex-col gap-3'>
+         <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-3'>
             <Controller
                name='email'
                control={form.control}
@@ -58,7 +89,11 @@ export function LoginForm() {
                   </Field>
                )}
             />
-         </div>
+
+            <Button size='lg' type='submit' isLoading={isPending} disabled={isPending}>
+               Продолжить
+            </Button>
+         </form>
       </AuthWrapper>
    )
 }

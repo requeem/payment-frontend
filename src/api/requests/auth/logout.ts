@@ -1,0 +1,6 @@
+import { api } from '@/src/api/instance'
+
+export type LogoutRequestConfig = RequestConfig
+
+export const logout = (requestConfig: LogoutRequestConfig) =>
+   api.delete('/auth/logout', requestConfig.config)

@@ -7,6 +7,9 @@ export const useRegisterUserMutation = (
    useMutation({
       mutationKey: ['register'],
       mutationFn: ({ params, config }) =>
-         register({ params, config: { ...settings?.config, ...config } }),
+         register({
+            params,
+            config: { ...settings?.config, ...config }
+         }),
       ...settings?.options
    })

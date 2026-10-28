@@ -20,8 +20,8 @@ export function AuthWrapper({
 }: AuthWrapperProps) {
    return (
       <div className='flex min-h-screen'>
-         <div className='relative hidden overflow-hidden bg-gradient-to-br from-[#FFF4EC] via-[#FFEBDD] to-[#FFDAB3] lg:flex lg:w-1/2'>
-            <div className='absolute inset-0 bg-gradient-to-br from-[#FFF4EC]/90 via-[#FFEBDD]/90 to-[#FFDAB3]/90' />
+         <div className='relative hidden overflow-hidden bg-linear-to-br from-[#FFF4EC] via-[#FFEBDD] to-[#FFDAB3] lg:flex lg:w-1/2'>
+            <div className='absolute inset-0 bg-linear-to-br from-[#FFF4EC]/90 via-[#FFEBDD]/90 to-[#FFDAB3]/90' />
 
             <div className='relative z-10 flex h-full w-full flex-col items-center justify-center p-12'>
                {/* <Image src='/placeholder.svg' alt='Auth' width={100} height={100} /> */}
