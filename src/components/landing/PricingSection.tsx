@@ -1,5 +1,7 @@
 'use client'
 
+import { Reveal } from './Reveal'
+
 import { useState } from 'react'
 import Link from 'next/link'
 import { Check } from 'lucide-react'
@@ -14,7 +16,7 @@ const plans = [
 function PlanCard({ plan, annual }: { plan: (typeof plans)[number]; annual: boolean }) {
   const price = annual ? Math.round(plan.price * 12 * 0.8) : plan.price
   return (
-    <article className={`relative flex flex-col rounded-xl border bg-card p-7 shadow-sm ${plan.popular ? 'border-primary ring-1 ring-primary' : ''}`}>
+    <article className={`relative flex flex-col rounded-xl border bg-card p-7 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg ${plan.popular ? 'border-primary ring-1 ring-primary' : ''}`}>
       {plan.popular && <span className="absolute -top-3 left-6 rounded-full bg-primary px-3 py-1 text-xs text-primary-foreground">Популярный</span>}
       <h3 className="text-xl font-semibold">{plan.name}</h3>
       <p className="mt-7 text-4xl font-bold">{price.toLocaleString('ru-RU')} ₽ <span className="text-sm font-normal text-muted-foreground">/{annual ? 'год' : 'мес.'}</span></p>
@@ -27,7 +29,8 @@ function PlanCard({ plan, annual }: { plan: (typeof plans)[number]; annual: bool
 export function PricingSection() {
   const [annual, setAnnual] = useState(false)
   return (
-    <section id="pricing" className="mx-auto max-w-6xl px-5 py-24">
+    <Reveal>
+<section id="pricing" className="mx-auto max-w-6xl px-5 py-24">
       <div className="text-center">
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Выберите свой тариф</h2>
         <p className="mt-3 text-muted-foreground">Демонстрационные цены — условия уточняются при оформлении.</p>
@@ -38,5 +41,6 @@ export function PricingSection() {
       </div>
       <div className="mt-10 grid gap-5 md:grid-cols-3">{plans.map(plan => <PlanCard key={plan.name} plan={plan} annual={annual} />)}</div>
     </section>
+    </Reveal>
   )
 }
