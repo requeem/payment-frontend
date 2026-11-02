@@ -1,27 +1,27 @@
 import { Reveal } from './Reveal'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { buttonVariants } from '@/src/components/ui/button'
 
 export function HeroSection() {
    return (
       <Reveal>
-         <section className='mx-auto max-w-6xl px-5 py-24 text-center md:py-32'>
-            <span className='inline-flex items-center gap-2 rounded-full border bg-muted px-3 py-1 text-xs font-medium'>
-               <Sparkles className='size-3.5' /> Простое управление подписками
-            </span>
-            <h1 className='mx-auto mt-7 max-w-3xl text-5xl font-bold tracking-tight md:text-7xl'>
-               Ваши возможности. <span className='text-muted-foreground'>Ваш тариф.</span>
-            </h1>
-            <p className='mx-auto mt-6 max-w-xl text-lg text-muted-foreground'>
-               Выбирайте подходящий план, управляйте подпиской и следите за платежами в одном месте.
-            </p>
-            <div className='mt-9 flex flex-wrap justify-center gap-3'>
-               <a className={buttonVariants({ size: 'lg' })} href='#pricing'>
-                  Выбрать тариф <ArrowRight className='ml-2 size-4' />
-               </a>
-               <a className={buttonVariants({ size: 'lg', variant: 'outline' })} href='#features'>
-                  Узнать больше
-               </a>
+         <section aria-labelledby='hero-title' className='mx-auto max-w-6xl px-5 pb-20 pt-24 md:pb-28 md:pt-36'>
+            <div className='max-w-3xl'>
+               <p className='text-sm font-semibold tracking-wide text-muted-foreground'>NEBULA / ПОДПИСКИ И ПЛАТЕЖИ</p>
+               <h1 id='hero-title' className='mt-6 text-5xl font-semibold leading-[1.08] tracking-tight md:text-7xl'>
+                  Подписка и платежи. <span className='text-muted-foreground'>Без лишних действий.</span>
+               </h1>
+               <p className='mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground'>
+                  Выберите план, управляйте подпиской и проверяйте историю платежей в одном личном кабинете.
+               </p>
+               <div className='mt-9 flex flex-wrap gap-3'>
+                  <a className={buttonVariants({ size: 'lg' })} href='#pricing'>
+                     Смотреть тарифы <ArrowRight aria-hidden='true' className='ml-2 size-4' />
+                  </a>
+                  <a className={buttonVariants({ size: 'lg', variant: 'outline' })} href='#features'>
+                     Как это работает
+                  </a>
+               </div>
             </div>
          </section>
       </Reveal>
