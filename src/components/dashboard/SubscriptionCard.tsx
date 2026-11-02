@@ -1,52 +1,34 @@
 import Link from 'next/link'
-import { ArrowUpRight, CalendarDays, Check, Crown, Sparkles } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { buttonVariants } from '@/src/components/ui/button'
 
 export function SubscriptionCard() {
    return (
-      <section
-         id='subscription'
-         aria-labelledby='subscription-heading'
-         className='relative overflow-hidden rounded-2xl border bg-card p-6 shadow-sm sm:p-8'
-      >
-         <div className='pointer-events-none absolute -right-20 -top-24 size-72 rounded-full bg-violet-500/10 blur-3xl' />
-         <div className='relative flex flex-wrap items-start justify-between gap-4'>
+      <section id='subscription' aria-labelledby='subscription-heading' className='overflow-hidden rounded-2xl border bg-card'>
+         <div className='flex flex-wrap items-start justify-between gap-6 border-b p-6 sm:p-8'>
             <div>
-               <div className='mb-4 flex size-11 items-center justify-center rounded-xl bg-violet-500/10 text-violet-600'>
-                  <Crown className='size-5' />
-               </div>
-               <p className='text-sm text-muted-foreground'>Текущий план · Демо</p>
-               <h2 id='subscription-heading' className='mt-2 text-3xl font-semibold tracking-tight'>
-                  Nebula Pro
-               </h2>
-               <p className='mt-2 text-sm text-muted-foreground'>
-                  Всё необходимое для продуктивной работы
-               </p>
+               <p className='text-sm text-muted-foreground'>Текущая подписка · Демо</p>
+               <h2 id='subscription-heading' className='mt-3 text-3xl font-medium tracking-tight'>Nebula Pro</h2>
+               <p className='mt-3 text-sm text-muted-foreground'>Информация о плане и следующем списании</p>
             </div>
-            <span className='inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700'>
-               <Check className='size-3.5' /> Активен (демо)
+            <span className='inline-flex items-center gap-2 text-sm font-medium'>
+               <span aria-hidden='true' className='size-2 rounded-full bg-emerald-600' /> Активен (демо)
             </span>
          </div>
-         <div className='relative mt-8 grid gap-4 rounded-xl border bg-muted/40 p-5 sm:grid-cols-2'>
+         <div className='grid gap-8 p-6 sm:grid-cols-2 sm:p-8'>
             <div>
-               <p className='text-xs text-muted-foreground'>Стоимость</p>
-               <p className='mt-1 text-xl font-semibold'>
-                  990 ₽ <span className='text-sm font-normal text-muted-foreground'>/ месяц</span>
-               </p>
+               <p className='text-sm text-muted-foreground'>Стоимость в месяц</p>
+               <p className='mt-2 text-3xl font-medium tabular-nums'>990 ₽</p>
             </div>
             <div>
-               <p className='flex items-center gap-1.5 text-xs text-muted-foreground'>
-                  <CalendarDays className='size-3.5' /> Следующее списание
-               </p>
-               <p className='mt-1 text-xl font-semibold'>15 ноября 2026</p>
+               <p className='text-sm text-muted-foreground'>Следующее списание</p>
+               <p className='mt-2 text-2xl font-medium tabular-nums'>15 ноября 2026</p>
             </div>
          </div>
-         <div className='relative mt-6 flex flex-wrap items-center justify-between gap-4'>
-            <p className='flex items-center gap-2 text-sm text-muted-foreground'>
-               <Sparkles className='size-4' /> Все преимущества Pro включены
-            </p>
+         <div className='flex flex-wrap items-center justify-between gap-4 border-t bg-muted/20 px-6 py-5 sm:px-8'>
+            <p className='text-sm text-muted-foreground'>Данные подписки демонстрационные</p>
             <Link href='/#pricing' className={buttonVariants({ variant: 'outline' })}>
-               Посмотреть тарифы <ArrowUpRight className='ml-2 size-4' />
+               Посмотреть тарифы <ArrowUpRight aria-hidden='true' className='ml-2 size-4' />
             </Link>
          </div>
       </section>
