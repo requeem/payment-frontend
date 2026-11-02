@@ -1,4 +1,4 @@
-import { Providers } from '@/src/shared/utils/providers/providers'
+import { Providers } from '@/src/providers/providers'
 import { cn } from 'cn'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'

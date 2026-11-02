@@ -11,10 +11,12 @@ import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import type {
    CreatePaymentDto,
    LoginUserDto,
+   LoginUserResponse,
+   LogoutResponse,
    PaymentHistoryResponse,
    PlanResponseDto,
+   RegisterResponse,
    RegisterUserDto,
-   SuccessResponse,
    UserResponse,
    YookassaWebhookDto
 } from './model'
@@ -22,7 +24,7 @@ import type {
 export const authControllerRegisterUser = (
    registerUserDto: RegisterUserDto,
    options?: AxiosRequestConfig
-): Promise<AxiosResponse<SuccessResponse>> => {
+): Promise<AxiosResponse<RegisterResponse>> => {
    return axios.post(`/api/auth/register`, registerUserDto, options)
 }
 export const getAuthControllerRegisterUserUrl = () => {
@@ -40,7 +42,7 @@ export const getAuthControllerRegisterUserUrl = () => {
 export const authControllerLoginUser = (
    loginUserDto: LoginUserDto,
    options?: AxiosRequestConfig
-): Promise<AxiosResponse<SuccessResponse>> => {
+): Promise<AxiosResponse<LoginUserResponse>> => {
    return axios.post(`/api/auth/login`, loginUserDto, options)
 }
 export const getAuthControllerLoginUserUrl = () => {
@@ -57,7 +59,7 @@ export const getAuthControllerLoginUserUrl = () => {
 
 export const authControllerLogoutUser = (
    options?: AxiosRequestConfig
-): Promise<AxiosResponse<SuccessResponse>> => {
+): Promise<AxiosResponse<LogoutResponse>> => {
    return axios.delete(`/api/auth/logout`, options)
 }
 export const getAuthControllerLogoutUserUrl = () => {
@@ -74,7 +76,7 @@ export const getAuthControllerLogoutUserUrl = () => {
 
 export const authControllerRefreshTokens = (
    options?: AxiosRequestConfig
-): Promise<AxiosResponse<SuccessResponse>> => {
+): Promise<AxiosResponse<void>> => {
    return axios.get(`/api/auth/refresh`, options)
 }
 export const getAuthControllerRefreshTokensUrl = () => {
@@ -220,10 +222,10 @@ export const getWebhookControllerHandleStrapiUrl = () => {
       })
 }
 
-export type AuthControllerRegisterUserResult = AxiosResponse<SuccessResponse>
-export type AuthControllerLoginUserResult = AxiosResponse<SuccessResponse>
-export type AuthControllerLogoutUserResult = AxiosResponse<SuccessResponse>
-export type AuthControllerRefreshTokensResult = AxiosResponse<SuccessResponse>
+export type AuthControllerRegisterUserResult = AxiosResponse<RegisterResponse>
+export type AuthControllerLoginUserResult = AxiosResponse<LoginUserResponse>
+export type AuthControllerLogoutUserResult = AxiosResponse<LogoutResponse>
+export type AuthControllerRefreshTokensResult = AxiosResponse<void>
 export type UsersControllerGetCurrentUserResult = AxiosResponse<UserResponse>
 export type PlanControllerGetAllPlansResult = AxiosResponse<PlanResponseDto[]>
 export type PlanControllerGetPlanByIdResult = AxiosResponse<PlanResponseDto>

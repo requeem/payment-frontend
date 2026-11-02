@@ -5,6 +5,7 @@
  * API для приложения
  * OpenAPI spec version: 1.0
  */
+import type { UserSubscriptionReponse } from './userSubscriptionReponse'
 
 export interface UserResponse {
    id: number
@@ -12,4 +13,5 @@ export interface UserResponse {
    name: string
    createdAt: string
    updatedAt: string
+   subscriptions: UserSubscriptionReponse
 }

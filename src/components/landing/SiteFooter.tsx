@@ -1,3 +1,5 @@
+'use client'
+
 export function SiteFooter() {
    return (
       <footer className='border-t py-8'>

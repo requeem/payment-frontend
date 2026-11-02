@@ -1,3 +1,6 @@
 import { prettier } from '@requem-team/prettier'
 
-export default prettier
+export default {
+   ...prettier,
+   singleAttributePerLine: true
+}
