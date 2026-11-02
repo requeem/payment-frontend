@@ -7,8 +7,8 @@ export function HeroSection() {
       <Reveal>
          <section aria-labelledby='hero-title' className='mx-auto max-w-6xl px-5 pb-20 pt-24 md:pb-28 md:pt-36'>
             <div className='max-w-3xl'>
-               <p className='text-sm font-semibold tracking-wide text-muted-foreground'>NEBULA / ПОДПИСКИ И ПЛАТЕЖИ</p>
-               <h1 id='hero-title' className='mt-6 text-5xl font-semibold leading-[1.08] tracking-tight md:text-7xl'>
+               <p className='text-sm text-muted-foreground'>Nebula / Подписки и платежи</p>
+               <h1 id='hero-title' className='mt-6 text-5xl font-medium leading-[1.08] tracking-tight md:text-7xl'>
                   Подписка и платежи. <span className='text-muted-foreground'>Без лишних действий.</span>
                </h1>
                <p className='mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground'>
